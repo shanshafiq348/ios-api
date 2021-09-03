@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'https://docs.wrld3d.com/ios/latest/docs/api/'
 
   s.source = {
-    :http => "https://s3.amazonaws.com/eegeo-static/wrld-ios-sdk/builds/wrld-ios-sdk-v#{s.version.to_s}.zip",
+    :http => "https://s3.amazonaws.com/eegeo-static/wrld-ios-sdk/builds/wrld-ios-sdk-v#0.0.1501.zip",
     :flatten => true
   }
 
