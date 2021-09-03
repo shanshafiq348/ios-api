@@ -16,5 +16,7 @@
 - (void)setDefaultStatesWithImageNames:(NSString*)normalImageName
                                       :(NSString*)highlightImageName
                             fromBundle:(NSBundle*)bundle;
+- (void)setDefaultStatesWithColors:(UIColor*)normalColor
+                                  :(UIColor*)highlightColor;
 
 @end

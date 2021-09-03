@@ -14,6 +14,8 @@
 namespace
 {
     float iPhoneDismissButtonMargin = 28.f;
+    float buttonSize = 20.0f;
+    float buttonViewSize = 35.0f;
 }
 
 
@@ -54,7 +56,7 @@ namespace
         m_inactiveDetailPaneYPosition = m_screenHeight;
 
 
-        self.pFloorPanel = [[UIView alloc] initWithFrame:CGRectMake(m_inactiveFloorListXPosition, m_screenHeight/2.0f, 110, 200)];
+        self.pFloorPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 200)];
         [self addSubview:self.pFloorPanel];
         
         NSBundle* widgetsBundle = [NSBundle bundleForClass:[IndoorControl class]];
@@ -98,7 +100,6 @@ namespace
         [self.pFloorChangeButton addSubview:self.pFloorOnButtonLabel];
 
 
-        const float buttonSize = 50.f;
         const float labelLength = isPhone ? fminf(200.f, m_screenWidth*0.5f) : 315.f;
 
         const float detailsPanelHeight = 50.0f;
@@ -110,18 +111,19 @@ namespace
 
         self.pDetailsPanel = [[UIView alloc] initWithFrame:CGRectMake(m_screenWidth * 0.5f - totalPanelLength * 0.5f, upperMargin, totalPanelLength, totalPanelHeight)];
 
-        UIColor* dismissButtonBackgroundColor = ExampleApp::Helpers::ColorPalette::UiBorderColor;
+        UIColor* dismissButtonBackgroundColor = ExampleApp::Helpers::ColorPalette::White;
 
-        const float dismissButtonX = m_inactiveFloorListXPosition;
-        const float dismissButtonY = self.pFloorPanel.frame.origin.y - 10.0f;
         UIView* dismissButtonParent = self;
         self.pDismissButtonBackground = [[UIImageView alloc] initWithImage:ExampleApp::Helpers::ImageHelpers::ImageFromColor(dismissButtonBackgroundColor)];
-        self.pDismissButtonBackground.frame = CGRectMake(dismissButtonX, dismissButtonY, buttonSize, buttonSize);
+        self.pDismissButtonBackground.frame = CGRectMake(55 - buttonViewSize/2, 0, buttonViewSize, buttonViewSize);
         self.pDismissButtonBackground.userInteractionEnabled = YES;
         [dismissButtonParent addSubview:self.pDismissButtonBackground];
 
         self.pDismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, buttonSize, buttonSize)];
-        [self.pDismissButton setDefaultStatesWithImageNames:@"images/button_exit_interior_off" :@"images/button_exit_interior_on" fromBundle:widgetsBundle];
+        self.pDismissButton.center = CGPointMake(self.pDismissButtonBackground.frame.size.width  / 2,
+                                                 self.pDismissButtonBackground.frame.size.height / 2);
+        [self.pDismissButton setDefaultStatesWithImageNames:@"images/button_exit_interior_off" :@"images/button_exit_interior_off" fromBundle:widgetsBundle];
+        [self.pDismissButton setDefaultStatesWithColors:  ExampleApp::Helpers::ColorPalette::White: ExampleApp::Helpers::ColorPalette::White];
 
         [self.pDismissButton addTarget:self action:@selector(onCancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.pDismissButtonBackground addSubview:self.pDismissButton];
@@ -139,8 +141,9 @@ namespace
         self.pFloorNameLabel = [[UILabel alloc] initWithFrame:CGRectMake( textPadding, textPadding, labelLength - (2*textPadding), detailsPanelHeight - (2*textPadding))];
         self.pFloorNameLabel.textColor = [UIColor whiteColor];
         self.pFloorNameLabel.textAlignment = NSTextAlignmentCenter;
+        [self.pFloorNameLabel setHidden:true];
         [self.pDetailsPanel addSubview:self.pFloorNameLabel];
-
+        [self.pDetailsPanel setHidden:true];
         [self addSubview:self.pDetailsPanel];
 
         self.pDetailsPanel.alpha = 0.0f;
@@ -434,8 +437,8 @@ namespace
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^
      {
-         self.pFloorPanel.frame = floorFrame;
-         self.pDismissButtonBackground.frame = dismissButtonFrame;
+//         self.pFloorPanel.frame = CGRectMake(0, 0, 110, 200);
+//         self.pDismissButtonBackground.frame = CGRectMake(0, 0, buttonViewSize, buttonViewSize);
      }
                      completion:^(BOOL FINISHED)
      {

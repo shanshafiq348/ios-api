@@ -15,6 +15,15 @@
                     forState:UIControlStateHighlighted];
 }
 
+- (void)setDefaultStatesWithColors:(UIColor*)normalColor
+                                  :(UIColor*)highlightColor
+{
+    [self setBackgroundImage:ExampleApp::Helpers::ImageHelpers::ImageFromColor(normalColor)
+                    forState:UIControlStateNormal];
+    [self setBackgroundImage:ExampleApp::Helpers::ImageHelpers::ImageFromColor(highlightColor)
+                    forState:UIControlStateHighlighted];
+}
+
 - (void)setDefaultStatesWithImages:(UIImage*)normalImage
                                   :(UIImage*)highlightImage
 {
