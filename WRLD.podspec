@@ -5,6 +5,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'WRLD'
+  s.version          = '0.0.1501 '
   s.summary          = '3D maps and indoor maps for iOS'
 
   s.description      = 'Display 3D outdoor and indoor maps and markers using OpenGL'
