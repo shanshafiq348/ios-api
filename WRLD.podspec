@@ -5,7 +5,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'WRLD'
-  s.version          = '0.0.1501 '
+  s.version          = '0.0.1501'
   s.summary          = '3D maps and indoor maps for iOS'
 
   s.description      = 'Display 3D outdoor and indoor maps and markers using OpenGL'
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'https://docs.wrld3d.com/ios/latest/docs/api/'
 
   s.source = {
-    :http => "https://s3.amazonaws.com/eegeo-static/wrld-ios-sdk/builds/wrld-ios-sdk-v#0.0.1501.zip",
+    :http => "https://s3.amazonaws.com/eegeo-static/wrld-ios-sdk/builds/wrld-ios-sdk-v0.0.1501.zip",
     :flatten => true
   }
 
